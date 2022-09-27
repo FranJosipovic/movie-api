@@ -12,3 +12,65 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.card:hover {
+  z-index: 100;
+  cursor: pointer;
+  scale: 1.01;
+}
+
+.dark-primary {
+  background-color: #1A1A2E;
+}
+
+.dark-secondary {
+  background-color: #16213E;
+}
+
+.dark-third {
+  background-color: #0F3460
+}
+
+.dark-off{
+  background-color: #E94560
+}
+
+.load-btn {
+  color: #E94560;
+  border: 1px solid #E94560;
+  border-radius: 6px;
+  background-color: transparent;
+  width: 150px;
+  height: 42px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.load-btn:hover {
+  color: white;
+  background-color: #E94560;
+}
+
+.shuffle-btn {
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  bottom: 12px;
+  height: 42px;
+  width: 42px;
+  color: #E94560;
+  border: 1px solid #E94560;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shuffle-btn:hover{
+  color: white;
+  background-color: #E94560;
+}
+
+.search-btn:hover{
+  color: #1A1A2E;
+}

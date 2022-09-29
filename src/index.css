@@ -74,3 +74,13 @@ code {
 .search-btn:hover{
   color: #1A1A2E;
 }
+
+.movie-overview {
+  padding: "2px";
+  position: "absolute";
+  bottom: "0";
+  left: "0";
+  color: "#E94560";
+  background: "rgba(0,0,0,0.5)";
+  border-top-right-radius: "4px";
+}

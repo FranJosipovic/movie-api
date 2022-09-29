@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/HomePage";
 import Movie from "./pages/Movie";
+import { MovieProvider } from "./context/MovieContext";
 
 function App() {
   useEffect(() => {
@@ -25,10 +26,12 @@ function App() {
   }, []);
 
   return (
-    <Routes>
-      <Route path="" element={<HomePage />} />
-      <Route path="/movie/:id" element={<Movie />} />
-    </Routes>
+    <MovieProvider>
+      <Routes>
+        <Route path="" element={<HomePage />} />
+        <Route path="/movie/:id" element={<Movie />} />
+      </Routes>
+    </MovieProvider>
   );
 }
 

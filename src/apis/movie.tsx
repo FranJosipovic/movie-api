@@ -1,5 +1,3 @@
-import { json } from "stream/consumers";
-
 const apiKey = process.env.REACT_APP_API_KEY;
 
 export const getMovies = (page: number) => {
@@ -35,6 +33,15 @@ export const rateMovie = (
       body: JSON.stringify({
         value: rating,
       }),
+    }
+  ).then((res) => res.json());
+};
+
+export const getMovieReviews = (movieId: number) => {
+  return fetch(
+    `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${apiKey}&language=en-US`,
+    {
+      method: "GET",
     }
   ).then((res) => res.json());
 };

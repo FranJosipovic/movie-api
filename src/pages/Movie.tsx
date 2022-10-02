@@ -105,7 +105,7 @@ export default function Movie() {
               Genres:{" "}
               {movie.genres.map((genre, i) => {
                 return (
-                  <span>
+                  <span key={i}>
                     {genre.name}
                     {movie.genres.length !== i + 1 && ", "}
                   </span>

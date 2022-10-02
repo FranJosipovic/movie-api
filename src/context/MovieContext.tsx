@@ -1,11 +1,7 @@
 import React, { createContext, ReactNode, useContext, useState } from "react";
 import { getMovieById, getMovieReviews, rateMovie } from "../apis/movie";
 import { getRatedMovies } from "../apis/user";
-
-type Session = {
-  sesionExpiresAt: string;
-  sessionId: string;
-};
+import { useSession } from "./SessionContext";
 
 type SpokenLanguage = {
   english_name: string;
@@ -86,7 +82,7 @@ export function useMovie() {
 }
 
 export function MovieProvider({ children }: MovieProviderProps) {
-  const session: Session = JSON.parse(localStorage.getItem("session")!);
+  const { session } = useSession();
 
   const [movie, setMovie] = useState<MovieProps | null>(null);
 
@@ -96,7 +92,7 @@ export function MovieProvider({ children }: MovieProviderProps) {
     if (!session) {
       return;
     }
-    rateMovie(movie?.id, rating, session?.sessionId).then((data) => {
+    rateMovie(movie?.id, rating, session.sessionId).then((data) => {
       if (data.success) {
         setMyRating(rating);
       }
@@ -108,13 +104,16 @@ export function MovieProvider({ children }: MovieProviderProps) {
     setStars: React.Dispatch<React.SetStateAction<number>>
   ) {
     getMovieById(id).then((movie) => {
-      getRatedMovies(session?.sessionId).then((data) => {
+      getRatedMovies(session?.sessionId!).then((data) => {
         let ratedMovie = data.results.find((r: any) => {
           return r.id === Number(id);
         });
         if (ratedMovie) {
           setMyRating(ratedMovie.rating);
           setStars(ratedMovie.rating);
+        } else {
+          setMyRating(0);
+          setStars(0);
         }
       });
       getMovieReviews(id).then((data) => {
